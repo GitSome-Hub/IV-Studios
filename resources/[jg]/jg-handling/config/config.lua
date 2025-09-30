@@ -7,7 +7,7 @@ Config.Notifications = "auto" -- or "okokNotify", "ps-ui", "nox_notify", "ox_lib
 Config.SpeedUnit = "mph" -- or "kph"
 
 -- Editor
-Config.EditorCommand = "editor" -- chat command
+Config.EditorCommand = "TuneUp" -- chat command
 Config.EditorAdminOnly = true -- Set to true for admin only 
 Config.EditorJobRestriction = {} -- [Requires framework] Enter jobs here that can use the editor, for example {"mechanic", "government"}. if set to false & EditorAdminOnly is also false, the editor will be public.
 

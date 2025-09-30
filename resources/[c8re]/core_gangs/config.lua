@@ -140,7 +140,7 @@ Config = {
     WarScoreIncrease = 5, -- Amount of points added every second from each player to your organizations score in battle
 
     OrganizationCooldown = 5, -- Time in minutes after which player can start another zone war
-    ZoneCooldown = 10, -- Time in minutes after which all players can start another war in the same zone
+    ZoneCooldown = 2, -- Time in minutes after which all players can start another war in the same zone
 
     CurrencyAward = 200, -- Amount of special currency awarded to each criminal when the organization win the war
     Rewards = {          -- Reward send to player when they win the war. Can be fixed amount or random amount ({0,5} will be a random from 0 no obejct to 5 object)
