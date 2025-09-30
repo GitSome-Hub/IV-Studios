@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html style="background: rgba(0,0,0,0) !important; background-color: transparent !important;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Announcements</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body style="background: rgba(0,0,0,0) !important; background-color: transparent !important; margin: 0; padding: 0; overflow: hidden;">
+    <div id="announcement-container" class="announcement-container hidden">
+        <div id="announcement-content" class="announcement-content">
+            <div class="announcement-header">
+                <div class="announcement-icon">
+                    <i id="announcement-icon" class="fas fa-bullhorn"></i>
+                </div>
+                <div class="announcement-title-section">
+                    <h2 id="announcement-title">GOVERNMENT ANNOUNCEMENT</h2>
+                </div>
+            </div>
+            <div class="announcement-body">
+                <p id="announcement-message">This is a sample announcement message.</p>
+            </div>
+            <div class="announcement-footer">
+                <div class="announcement-timestamp" id="announcement-timestamp">
+                    <!-- Timestamp will be inserted here -->
+                </div>
+                <div class="announcement-progress">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Permit Document Container -->
+    <div id="permit-document-container" class="permit-document-container hidden">
+        <div class="permit-document-overlay"></div>
+        <div class="permit-document-page">
+            <!-- Document Header -->
+            <div class="permit-header">
+                <div class="permit-logo">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="permit-header-text">
+                    <h1>GOVERNMENT OF LOS SANTOS</h1>
+                    <h2>Department of Permits and Licensing</h2>
+                </div>
+                <div class="permit-seal">
+                    <i class="fas fa-certificate"></i>
+                </div>
+            </div>
+
+            <!-- Document Title -->
+            <div class="permit-title">
+                <h3 id="permit-title">OFFICIAL PERMIT</h3>
+                <div class="permit-underline"></div>
+            </div>
+
+            <!-- Document Content -->
+            <div class="permit-content">
+                <!-- Permit Information Table -->
+                <table class="permit-info-table">
+                    <tr>
+                        <td class="label-cell">PERMIT NUMBER:</td>
+                        <td class="value-cell" id="permit-number">PER-000000</td>
+                        <td class="label-cell">ISSUE DATE:</td>
+                        <td class="value-cell" id="permit-issue-date">January 1, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">PERMIT TYPE:</td>
+                        <td class="value-cell" id="permit-type">General Permit</td>
+                        <td class="label-cell">EXPIRY DATE:</td>
+                        <td class="value-cell" id="permit-expiry-date">December 31, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">HOLDER NAME:</td>
+                        <td class="value-cell" id="permit-holder-name">John Doe</td>
+                        <td class="label-cell">STATUS:</td>
+                        <td class="value-cell" id="permit-status">ACTIVE</td>
+                    </tr>
+                </table>
+
+                <!-- Description Section -->
+                <div class="permit-description-section">
+                    <div class="section-title">PERMIT DESCRIPTION:</div>
+                    <div class="permit-description" id="permit-description">
+                        This permit authorizes the holder to engage in the activities specified herein, subject to all applicable laws, regulations, and conditions set forth by the Government of San Andreas.
+                    </div>
+                </div>
+
+                <!-- Authorization Section -->
+                <div class="permit-authorization">
+                    <div class="auth-text">
+                        This permit is issued under the authority of the San Andreas Government and is valid only for the purposes and duration specified above. Any violation of the terms and conditions may result in immediate revocation of this permit.
+                    </div>
+                </div>
+
+                <!-- Signatures Section -->
+                <div class="permit-signatures">
+                    <div class="signature-section">
+                        <div class="signature-name" id="permit-issued-by">Officer Name</div>
+                        <div class="signature-title">Licensing Officer</div>
+                    </div>
+                    <div class="official-seal-section">
+                        <div class="seal-placeholder">
+                            <i class="fas fa-stamp"></i>
+                            <div class="seal-text">GOVERNMENT<br>OF<br>LOS SANTOS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Information -->
+                <div class="permit-footer-info">
+                    <div class="footer-line">
+                        <strong>IMPORTANT:</strong> This permit must be presented upon request by authorized government officials.
+                    </div>
+                    <div class="footer-line">
+                        For verification, contact the Department of Permits and Licensing at (555) 123-GOVT
+                    </div>
+                    <div class="footer-line">
+                        Document generated on <span id="document-generation-date">Today's Date</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Show Information (when shown by someone else) -->
+            <div id="permit-shown-by" class="permit-shown-by hidden">
+                <div class="shown-by-text">
+                    <i class="fas fa-user"></i>
+                    Permit shown by: <span id="shown-by-name">Player Name</span>
+                </div>
+            </div>
+
+            <!-- Close Button -->
+            <div class="permit-close-button" onclick="closePermitDocument()">
+                <i class="fas fa-times"></i>
+                <span>Close</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+/* ---
+   Modern & Clean "Apple-like" Border Design
+   V2 - Top-Right Info & Fading Grid
+   --- */
+
+/* General Setup */
+body {
+    margin: 0;
+    padding: 0;
+    width: 3840px; /* Default 4K Width - will be dynamically adjusted */
+    height: 2160px; /* Default 4K Height - will be dynamically adjusted */
+    background: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+                 Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.border-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeIn 2s ease-out forwards;
+}
+
+/* Background Effects */
+.border-background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, var(--main-color-alpha-01) 0%, transparent 60%);
+    z-index: 1;
+}
+
+.border-glow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150%;
+    height: 50%;
+    background: radial-gradient(ellipse at bottom, var(--main-color-alpha-02) 0%, transparent 50%);
+    animation: slowGlow 12s ease-in-out infinite alternate;
+    z-index: 2;
+}
+
+/* Grid Overlay */
+.grid-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background-image:
+        linear-gradient(var(--main-color-alpha-02) 1px, transparent 1px),
+        linear-gradient(to right, var(--main-color-alpha-02) 1px, transparent 1px);
+    background-size: calc(50px * var(--scale-factor)) calc(50px * var(--scale-factor));
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    z-index: 3;
+    animation: gridPulse 12s ease-in-out infinite alternate;
+}
+
+/* Main Border Lines */
+.border-lines {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to top, var(--main-color) 0%, var(--main-color-alpha-08) 40%, transparent 80%);
+
+    z-index: 10;
+}
+
+.border-lines.left {
+    left: 0;
+}
+
+.border-lines.right {
+    right: 0;
+}
+
+/* Centered Location Text */
+.location-text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    animation: fadeInCenter 2s ease-out 0.5s forwards;
+    opacity: 0;
+    text-align: center;
+    width: 90%;
+    max-width: 90%;
+}
+
+.location-name {
+    background: linear-gradient(70deg, #ffffff 20%, #cacaca 45%, transparent 55%, #cacaca 75%, #ffffff 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: calc(8vw + 4vh); /* Much larger, responsive to viewport */
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.1;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    animation: wave-animation 3s infinite;
+    
+    /* Responsive font sizing with viewport units as fallback */
+    font-size: clamp(60px, calc(8vw + 4vh), 400px);
+    
+    /* Ensure proper centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Handle long text gracefully */
+    word-break: break-word;
+    hyphens: auto;
+}
+
+@keyframes wave-animation {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInCenter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes slowGlow {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 0.8;
+    }
+}
+
+@keyframes breathe {
+    from {
+        box-shadow: 0 0 10px var(--main-color-alpha-05), 0 0 20px var(--main-color-alpha-02);
+    }
+    to {
+        box-shadow: 0 0 15px var(--main-color-alpha-08), 0 0 30px var(--main-color-alpha-05);
+    }
+}
+
+@keyframes gridPulse {
+    from {
+       opacity: 0.6;
+    }
+    to {
+       opacity: 1;
+    }
+}
+
+/* Default Color Theme and Scaling Variables */
+:root {
+    --main-color: #007AFF; /* Apple Blue */
+    --main-color-alpha-08: rgba(0, 122, 255, 0.8);
+    --main-color-alpha-05: rgba(0, 122, 255, 0.5);
+    --main-color-alpha-02: rgba(0, 122, 255, 0.2);
+    --main-color-alpha-01: rgba(0, 122, 255, 0.1);
+    
+    /* Scaling variables - will be set by JavaScript */
+    --scale-factor: 1;
+    --width-scale: 1;
+    --height-scale: 1;
+}
+
+/* Responsive adjustments for different border sizes */
+@media (max-width: 800px) {
+    .location-name {
+        font-size: clamp(40px, calc(10vw + 3vh), 300px);
+        letter-spacing: 0.08em;
+    }
+}
+
+@media (max-height: 600px) {
+    .location-name {
+        font-size: clamp(35px, calc(6vw + 8vh), 250px);
+        letter-spacing: 0.06em;
+    }
+}
+
+@media (min-width: 2000px) and (min-height: 1200px) {
+    .location-name {
+        font-size: clamp(120px, calc(6vw + 6vh), 500px);
+        letter-spacing: 0.12em;
+    }
+}

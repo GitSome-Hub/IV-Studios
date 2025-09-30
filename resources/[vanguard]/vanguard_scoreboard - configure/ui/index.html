@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="scoreboard" class="scoreboard-container fullscreen hidden">
+        <div class="background-effects">
+            <div class="bg-effect bg-effect-1"></div>
+            <div class="bg-effect bg-effect-2"></div>
+            <div class="bg-effect bg-effect-3"></div>
+        </div>
+
+        <div class="scoreboard-main">
+            <!-- Header -->
+            <div class="scoreboard-header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <div class="title-section">
+                            <h1 class="main-title">SCOREBOARD</h1>
+                            <h2 class="sub-title">Vanguard Labs</h2>
+                        </div>
+                        
+                        <div class="players-counter">
+                            <i class="fa-solid fa-users"></i>
+                            <span class="counter-label">Players Online</span>
+                            <div class="counter-numbers">
+                                <span id="current-players" class="current">0</span>
+                                <span class="separator">/</span>
+                                <span id="max-players" class="max">32</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Statistics -->
+            <div class="job-stats-section">
+                <div id="job-stats" class="job-stats-grid">
+                    <!-- Job stats will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Player List Header -->
+            <div class="player-list-header">
+                <div class="header-grid">
+                    <div class="header-item">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Player Name</span>
+                    </div>
+                    <div class="header-item">
+                        <span>Job</span>
+                    </div>
+                    <div class="header-item">
+                        <span>Rank</span>
+                    </div>
+                    <div class="header-item ping-header">
+                        <span>Ping</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player List -->
+            <div class="player-list-container">
+                <div id="player-list" class="player-list">
+                    <!-- Players will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

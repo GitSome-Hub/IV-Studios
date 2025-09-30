@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+		  <modelName>w_ar_sr25</modelName>
+		  <txdName>w_ar_sr25</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="500"/>
+		</Item>
+		<Item>
+		  <modelName>w_ar_sr25_mag1</modelName>
+		  <txdName>w_ar_sr25_mag1</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_sr25_supp</modelName>
+		  <txdName>w_at_sr25_supp</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_sr25_afgrip</modelName>
+		  <txdName>w_at_sr25_afgrip</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_sr25_scope_medium</modelName>
+		  <txdName>w_at_sr25_scope_medium</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

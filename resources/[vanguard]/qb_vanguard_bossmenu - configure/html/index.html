@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Management</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="boss-menu" class="hidden">
+        <div class="container">
+            <!-- Header Section -->
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>Police Department</h1>
+                </div>
+                <div class="header-controls">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-details">
+                            <span id="player-name">Officer Name</span>
+                            <span id="player-rank">Chief</span>
+                        </div>
+                    </div>
+                    <div class="window-controls">
+                        <button id="resize-menu" title="Toggle Size">
+                            <i class="fas fa-expand-alt"></i>
+                        </button>
+                        <div class="close-btn" id="close-menu">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="nav-tabs">
+                <div class="tab active" data-tab="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="tab" data-tab="employees">
+                    <i class="fas fa-users"></i>
+                    <span>Officers</span>
+                </div>
+                <div class="tab" data-tab="finances">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Budget</span>
+                </div>
+                <div class="tab" data-tab="grades">
+                    <i class="fas fa-id-badge"></i>
+                    <span>Ranks</span>
+                </div>
+                <div class="tab" data-tab="statistics">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Statistics</span>
+                </div>
+            </div>
+            
+            <!-- Content Sections -->
+            <div class="content">
+                <!-- Dashboard Tab -->
+                <div class="tab-content active" id="dashboard-content">
+                    <div class="section-header">
+                        <h2><i class="fas fa-tachometer-alt"></i> Department Overview</h2>
+                        <button class="action-btn" id="refresh-dashboard" title="Refresh Dashboard">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="dashboard-overview">
+                        <div class="dashboard-stats">
+                            <div class="stat-card primary">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-title">On Duty Officers</div>
+                                    <div class="stat-value" id="active-employees">0</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card secondary">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-clock"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-title">Off Duty Officers</div>
+                                    <div class="stat-value" id="offline-employees">0</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card accent">
+                                <div class="stat-icon">
+                                    <i class="fas fa-wallet"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-title">Department Budget</div>
+                                    <div class="stat-value" id="dashboard-balance">$0</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card warning">
+                                <div class="stat-icon">
+                                    <i class="fas fa-money-check-alt"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-title">Monthly Payroll</div>
+                                    <div class="stat-value" id="dashboard-salaries">$0</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-sections">
+                            <div class="dashboard-section">
+                                <div class="section-title">
+                                    <i class="fas fa-history"></i>
+                                    <h3>Recent Activities</h3>
+                                </div>
+                                <div class="recent-activities" id="recent-activities">
+                                    <!-- Activities will be populated here -->
+                                </div>
+                            </div>
+                            
+                            <div class="dashboard-section">
+                                <div class="section-title-with-controls">
+                                    <div class="section-title">
+                                        <i class="fas fa-user-tag"></i>
+                                        <h3>Online Officers</h3>
+                                    </div>
+                                    <div class="duty-status-toggle">
+                                        <div class="duty-status-label">Your Duty Status:</div>
+                                        <div class="duty-status-dropdown">
+                                            <div class="current-status" id="current-duty-status">
+                                                <span class="status-indicator off-duty"></span>
+                                                <span class="status-text">Off-Duty</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="status-options">
+                                                <!-- Status options will be populated by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="top-employees" id="top-employees">
+                                    <!-- Top employees will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Employees Tab -->
+                <div class="tab-content" id="employees-content">
+                    <div class="section-header">
+                        <h2><i class="fas fa-users"></i> Officer Management</h2>
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="employee-search" placeholder="Search officers...">
+                        </div>
+                        <button class="action-btn" id="refresh-employees" title="Refresh Officers">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="employee-list">
+                        <!-- Employee cards will be populated here -->
+                    </div>
+                    
+                    <div class="hiring-section">
+                        <h3><i class="fas fa-user-plus"></i> Recruitment Process</h3>
+                        
+                        <div class="hiring-steps">
+                            <div class="hiring-step">
+                                <div class="step-number">1</div>
+                                <div class="step-label">Select Candidate</div>
+                            </div>
+                            <div class="hiring-step">
+                                <div class="step-number">2</div>
+                                <div class="step-label">Assign Rank</div>
+                            </div>
+                            <div class="hiring-step">
+                                <div class="step-number">3</div>
+                                <div class="step-label">Review & Confirm</div>
+                            </div>
+                        </div>
+                        
+                        <div class="hiring-container">
+                            <div class="candidate-selection">
+                                <div class="candidate-search">
+                                    <label for="candidate-id">Citizen ID:</label>
+                                    <div class="search-input-group">
+                                        <i class="fas fa-id-card"></i>
+                                        <input type="text" id="candidate-id" placeholder="Enter server ID">
+                                    </div>
+                                </div>
+                                
+                                <div class="candidate-details">
+                                    <div class="candidate-placeholder">
+                                        <i class="fas fa-user"></i>
+                                        <p>Enter a citizen ID to view details</p>
+                                    </div>
+                                    <div class="candidate-info">
+                                        <h4>Candidate Information</h4>
+                                        <div class="candidate-attributes">
+                                            <div class="candidate-attribute">
+                                                <div class="attribute-label">Name</div>
+                                                <div class="attribute-value" id="candidate-name">N/A</div>
+                                            </div>
+                                            <div class="candidate-attribute">
+                                                <div class="attribute-label">Current Job</div>
+                                                <div class="attribute-value" id="candidate-current-job">N/A</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="position-selection">
+                                <div class="job-rank-select">
+                                    <label for="rank-select">Select Rank:</label>
+                                    <div class="custom-select">
+                                        <input type="text" class="select-field" id="rank-select" readonly placeholder="Select rank">
+                                        <div class="select-options">
+                                            <!-- Rank options will be populated here -->
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="position-preview">
+                                    <h4><i class="fas fa-shield-alt"></i> Position Details</h4>
+                                    <div class="position-details">
+                                        <div class="position-detail">
+                                            <div class="detail-label">Title</div>
+                                            <div class="detail-value" id="position-title">N/A</div>
+                                        </div>
+                                        <div class="position-detail">
+                                            <div class="detail-label">Salary</div>
+                                            <div class="detail-value salary" id="position-salary">N/A</div>
+                                        </div>
+                                        <div class="position-detail">
+                                            <div class="detail-label">Rank Level</div>
+                                            <div class="detail-value" id="position-level">N/A</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="hire-confirmation">
+                                    <div class="confirmation-checkbox">
+                                        <div class="custom-checkbox">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="checkbox-label">I confirm this hiring decision</span>
+                                    </div>
+                                    <button class="hire-btn" id="hire-employee-btn" disabled>
+                                        <i class="fas fa-user-plus"></i>
+                                        Hire Officer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Finances Tab -->
+                <div class="tab-content" id="finances-content">
+                    <div class="section-header">
+                        <h2><i class="fas fa-money-bill-wave"></i> Budget Management</h2>
+                        <button class="action-btn" id="refresh-finances" title="Refresh Budget">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="finance-overview">
+                        <div class="balance-card">
+                            <div class="balance-title">
+                                <i class="fas fa-wallet"></i>
+                                Department Budget
+                            </div>
+                            <div class="balance-amount" id="society-balance">$0</div>
+                            <div class="balance-actions">
+                                <button class="deposit-btn" id="show-deposit">
+                                    <i class="fas fa-arrow-up"></i>
+                                    Deposit
+                                </button>
+                                <button class="withdraw-btn" id="show-withdraw">
+                                    <i class="fas fa-arrow-down"></i>
+                                    Withdraw
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Finance Chart -->
+                        <div class="finance-chart-container">
+                            <div class="chart-header">
+                                <h3><i class="fas fa-chart-line"></i> Department Cash Flow</h3>
+                                <div class="chart-period-selector">
+                                    <button class="chart-period-btn active" data-period="weekly">Weekly</button>
+                                    <button class="chart-period-btn" data-period="monthly">Monthly</button>
+                                    <button class="chart-period-btn" data-period="yearly">Yearly</button>
+                                </div>
+                            </div>
+                            <div class="chart-canvas-container">
+                                <div id="finance-chart"></div>
+                            </div>
+                            <div class="chart-legend">
+                                <div class="legend-item legend-income">
+                                    <div class="legend-color"></div>
+                                    <span>Income</span>
+                                </div>
+                                <div class="legend-item legend-expense">
+                                    <div class="legend-color"></div>
+                                    <span>Expenses</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="transaction-history">
+                        <h3><i class="fas fa-history"></i> Transaction History</h3>
+                        
+                        <div class="transaction-filters">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="deposit">Deposits</button>
+                            <button class="filter-btn" data-filter="withdraw">Withdrawals</button>
+                            <button class="filter-btn" data-filter="hire">Recruitment</button>
+                            <button class="filter-btn" data-filter="fire">Terminations</button>
+                            <button class="filter-btn" data-filter="promote">Promotions</button>
+                            <button class="filter-btn" data-filter="demote">Demotions</button>
+                            <button class="filter-btn" data-filter="duty">Duty Changes</button>
+                        </div>
+                        
+                        <div class="transaction-list">
+                            <!-- Transactions will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grades Tab (Redesigned) -->
+                <div class="tab-content" id="grades-content">
+                    <div class="section-header">
+                        <h2><i class="fas fa-id-badge"></i> Police Ranks</h2>
+                        <button class="action-btn" id="refresh-ranks" title="Refresh Ranks">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Redesigned ranks section -->
+                    <div class="ranks-overview">
+                        <div class="ranks-visualization">
+                            <div class="ranks-hierarchy">
+                                <!-- Rank hierarchy visualization will be generated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="ranks-list">
+                            <!-- Ranks will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Statistics Tab -->
+                <div class="tab-content" id="statistics-content">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-line"></i> Department Analytics</h2>
+                    </div>
+                    
+                    <div class="stats-cards">
+                        <div class="stat-card info">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-title">Total Officers</div>
+                                <div class="stat-value" id="total-employees">0</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card warning">
+                            <div class="stat-icon">
+                                <i class="fas fa-money-check-alt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-title">Monthly Payroll</div>
+                                <div class="stat-value" id="monthly-salaries">$0</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card primary">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-title">Budget Usage</div>
+                                <div class="stat-value" id="budget-usage">0%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card success">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-title">Recent Recruits</div>
+                                <div class="stat-value" id="new-hires">0</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card secondary">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-title">Avg. Rank</div>
+                                <div class="stat-value" id="avg-rank">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Employee Chart -->
+                    <div class="employees-chart-container">
+                        <h3><i class="fas fa-users"></i> Officer Activity Trend</h3>
+                        
+                        <div class="employee-trend-info">
+                            <div class="trend-stat">
+                                <div class="trend-value" id="employee-trend-value">0%</div>
+                                <div class="trend-label">Change in active officers</div>
+                            </div>
+                            <div class="trend-direction" id="employee-trend-direction">
+                                <i class="fas fa-arrow-right"></i> Stable
+                            </div>
+                        </div>
+                        
+                        <div class="employees-chart" id="employee-chart">
+                            <!-- Chart will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Operations Chart -->
+                    <div class="financial-chart-container">
+                        <h3><i class="fas fa-chart-bar"></i> Operations Overview</h3>
+                        
+                        <div class="chart-tabs">
+                            <div class="chart-tab active">Monthly</div>
+                            <div class="chart-tab">Quarterly</div>
+                            <div class="chart-tab">Yearly</div>
+                        </div>
+                        
+                        <div class="chart" id="transaction-chart">
+                            <!-- Chart will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notifications -->
+        <div class="notifications" id="notifications"></div>
+        
+        <!-- Employee Action Modal -->
+        <div id="employee-action-modal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <i class="fas fa-user-cog"></i>
+                        <span id="modal-employee-name">Officer Actions</span>
+                    </div>
+                    <div class="modal-close" id="employee-modal-close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="employee-actions-container">
+                        <div class="action-section">
+                            <h4><i class="fas fa-id-badge"></i> Rank Management</h4>
+                            <div class="action-buttons">
+                                <button class="action-btn-large promote-action">
+                                    <i class="fas fa-arrow-up"></i>
+                                    Promote
+                                </button>
+                                <button class="action-btn-large demote-action">
+                                    <i class="fas fa-arrow-down"></i>
+                                    Demote
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="action-section">
+                            <h4><i class="fas fa-user-clock"></i> Duty Status</h4>
+                            <div class="duty-status-management">
+                                <div class="current-duty-info">
+                                    <span>Current Status: </span>
+                                    <span id="employee-current-status" class="employee-status-badge">Off-Duty</span>
+                                </div>
+                                <div class="duty-status-selector">
+                                    <label for="employee-status-select">Set Status:</label>
+                                    <select id="employee-status-select" class="status-select">
+                                        <!-- Status options will be populated by JavaScript -->
+                                    </select>
+                                </div>
+                                <button class="action-btn-large update-status-action">
+                                    <i class="fas fa-save"></i>
+                                    Update Status
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="action-section">
+                            <h4><i class="fas fa-money-bill-wave"></i> Salary Adjustment</h4>
+                            <div class="salary-adjustment">
+                                <div class="current-salary-info">
+                                    <span>Current Salary: </span>
+                                    <span id="current-employee-salary">$0</span>
+                                </div>
+                                <div class="salary-slider-container">
+                                    <label for="salary-slider">Adjust Salary:</label>
+                                    <input type="range" id="salary-slider" min="0" max="10000" step="100" value="0">
+                                    <div class="salary-value">$<span id="salary-value">0</span></div>
+                                </div>
+                                <button class="action-btn-large update-salary-action">
+                                    <i class="fas fa-save"></i>
+                                    Update Salary
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="action-section danger-section">
+                            <h4><i class="fas fa-user-slash"></i> Termination</h4>
+                            <p class="warning-text">This action cannot be undone.</p>
+                            <button class="action-btn-large fire-action">
+                                <i class="fas fa-user-slash"></i>
+                                Terminate Officer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grade Edit Modal (Enhanced) -->
+        <div id="grade-edit-modal" class="grade-edit-modal">
+            <div class="modal-backdrop"></div>
+            <div class="grade-edit-content">
+                <div class="grade-edit-header">
+                    <h3><i class="fas fa-id-badge"></i> Edit Police Rank</h3>
+                    <div class="grade-edit-close" id="grade-edit-close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="grade-edit-body">
+                    <div class="edit-form-row">
+                        <label for="edit-grade-name">Rank Title</label>
+                        <input type="text" id="edit-grade-name" placeholder="Enter rank title">
+                    </div>
+                    <div class="edit-form-row">
+                        <label for="edit-grade-level">Rank Level</label>
+                        <input type="number" id="edit-grade-level" placeholder="Enter grade level">
+                    </div>
+                    <div class="edit-form-row">
+                        <label for="edit-grade-salary">Salary</label>
+                        <div class="salary-input-group">
+                            <span class="salary-prefix">$</span>
+                            <input type="number" id="edit-grade-salary" placeholder="Enter salary amount">
+                        </div>
+                    </div>
+                    <div class="edit-form-row">
+                        <label>Permissions</label>
+                        <div class="permission-checkboxes">
+                            <label class="permission-checkbox">
+                                <input type="checkbox" id="perm-hire"> Recruit Officers
+                            </label>
+                            <label class="permission-checkbox">
+                                <input type="checkbox" id="perm-fire"> Terminate Officers
+                            </label>
+                            <label class="permission-checkbox">
+                                <input type="checkbox" id="perm-promote"> Promote Officers
+                            </label>
+                            <label class="permission-checkbox">
+                                <input type="checkbox" id="perm-demote"> Demote Officers
+                            </label>
+                            <label class="permission-checkbox">
+                                <input type="checkbox" id="perm-withdraw"> Withdraw Funds
+                            </label>
+                            <label class="permission-checkbox">
+                                <input type="checkbox" id="perm-deposit"> Deposit Funds
+                            </label>
+                            <label class="permission-checkbox">
+                                <input type="checkbox" id="perm-manage"> Access Command Panel
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grade-edit-footer">
+                    <button class="grade-edit-cancel" id="grade-edit-cancel">Cancel</button>
+                    <button class="grade-edit-save" id="grade-edit-save">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Dealership</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tablet">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="logo">
+                    <i class="fas fa-car-side"></i>
+                    <h1 id="dealershipName">DealerShip</h1>
+                </div>
+                
+                <div class="player-info">
+                    <div class="player-avatar">
+                        <img id="playerAvatar" src="https://i.imgur.com/6DLzCnP.jpg" alt="Player">
+                    </div>
+                    <div class="player-details">
+                        <h3><span class="welcome-text">Welcome,</span> <span id="playerName">Loading...</span></h3>
+                        <div class="player-money">
+                            <i class="fas fa-wallet"></i>
+                            <span id="playerMoney">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="categories" id="categoriesContainer">
+                    <!-- Categories will be populated by script.js -->
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="filters-section">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search vehicles..." id="searchInput">
+                    </div>
+                    <div class="filter-controls">
+                        <div class="filter-group">
+                            <i class="fas fa-filter"></i>
+                            <select id="categoryFilter" class="filter-select">
+                                <option value="">All Categories</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <i class="fas fa-sort-amount-down"></i>
+                            <select id="priceSort" class="filter-select">
+                                <option value="">Sort by Price</option>
+                                <option value="asc">Price: Low to High</option>
+                                <option value="desc">Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">All Vehicles</h2>
+
+                <div class="vehicles-grid" id="vehiclesGrid">
+                    <!-- Vehicles will be populated by script.js -->
+                </div>
+            </div>
+
+            <!-- Vehicle Details Modal -->
+            <div class="modal-backdrop" id="modalBackdrop"></div>
+            <div class="vehicle-details" id="vehicleDetails">
+                <button class="close-button" id="closeDetails">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="vehicle-details-content">
+                    <div class="vehicle-preview">
+                        <div class="vehicle-image">
+                            <img id="detailImage" src="" alt="Vehicle">
+                        </div>
+                        
+                        <div class="vehicle-info">
+                            <h2 id="detailName" class="vehicle-name"></h2>
+                            <p id="detailPrice" class="vehicle-price"></p>
+                            
+                            <div class="vehicle-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-horse"></i>
+                                    <span>Power</span>
+                                    <p id="specPower">--</p>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Top Speed</span>
+                                    <p id="specSpeed">--</p>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-stopwatch"></i>
+                                    <span>0-60 mph</span>
+                                    <p id="specAccel">--</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vehicle-customization">
+                        <h3>Vehicle Customization</h3>
+                        
+                        <div class="color-selection">
+                            <h4>Available Colors</h4>
+                            <div class="color-grid" id="colorGrid">
+                                <!-- Colors will be populated by script.js -->
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="test-drive-btn" id="testDriveButton">
+                                <i class="fas fa-key"></i>
+                                Test Drive
+                            </button>
+                            <button class="purchase-btn" id="purchaseButton" disabled>
+                                <i class="fas fa-shopping-cart"></i>
+                                Select a Color
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Drive Countdown -->
+            <div class="test-drive-countdown">
+                <div class="countdown-timer">120</div>
+                <div class="countdown-labels">
+                    <div class="countdown-label">
+                        TEST DRIVE
+                        <span>DURATION</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification -->
+            <div class="notification" id="notification">
+                <span id="notificationText"></span>
+                <button class="close-btn" id="closeNotification">×</button>
+            </div>
+
+            <!-- Window Controls -->
+            <div class="window-controls">
+                <button class="window-button" id="closeBtn" onclick="closeUI()" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+		  <modelName>w_sb_yellowdevil90</modelName>
+		  <txdName>w_sb_yellowdevil90</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="500"/>
+		</Item>
+		<Item>
+		  <modelName>w_sb_yellowdevil90_mag1</modelName>
+		  <txdName>w_sb_yellowdevil90_mag1</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_yellowdevil90_macro</modelName>
+		  <txdName>w_at_yellowdevil90_macro</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_yellowdevil90_supp_02</modelName>
+		  <txdName>w_at_yellowdevil90_supp_02</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

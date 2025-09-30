@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponComponentInfoBlob>
+    <Infos>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_M4WAGESOFSIN_CLIP_01</Name>
+			<Model>w_ar_m4wagesofsin_mag1</Model>
+			<LocName>WCT_CLIP1</LocName>
+			<LocDesc>WCD_CR_CLIP1</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="false" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<ClipSize value="30" />
+			<ReloadData ref="RELOAD_DEFAULT" />
+		</Item>
+		<Item type="CWeaponComponentClipInfo">
+			<Name>COMPONENT_M4WAGESOFSIN_CLIP_02</Name>
+			<Model>w_ar_m4wagesofsin_mag2</Model>
+			<LocName>WCT_CLIP2</LocName>
+			<LocDesc>WCD_CR_CLIP2</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="100" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<ClipSize value="60" />
+			<ReloadData ref="RELOAD_DEFAULT" />
+		</Item>		
+		<Item type="CWeaponComponentInfo">
+			<Name>COMPONENT_AT_M4WAGESOFSIN_AFGRIP</Name>
+			<Model>w_at_m4wagesofsin_afgrip</Model>
+			<LocName>WCT_GRIP</LocName>
+			<LocDesc>WCD_GRIP</LocDesc>
+			<AttachBone>AAPGrip</AttachBone>
+			<AccuracyModifier type="CWeaponAccuracyModifier">
+			<AccuracyModifier value="1.100000" />
+			</AccuracyModifier>
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+		</Item>
+    </Infos>
+	<InfoBlobName>cmg template</InfoBlobName>
+</CWeaponComponentInfoBlob>

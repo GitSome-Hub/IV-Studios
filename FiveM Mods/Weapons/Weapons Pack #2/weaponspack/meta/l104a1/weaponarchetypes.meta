@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+			<modelName>w_lr_baton</modelName>
+			<txdName>w_lr_baton</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="100"/>
+		</Item>
+		<Item>
+			<modelName>w_lr_l104a1</modelName>
+			<txdName>w_lr_l104a1</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="100"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

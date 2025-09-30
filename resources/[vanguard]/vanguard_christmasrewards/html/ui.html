@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+            integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+    <body>
+        <div class="dailyRewardsGeneral">
+            <div class="prizeGeneral">
+                <div class="collectedPrizeSection">
+                    <div class="prizeImageSection">
+                        <img id="prizePic" src="./images/4-2-coins-png2.png" alt="" />
+                    </div>
+                    <div class="prizeCollectedText">COLLECTED!</div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="leftSideGeneral">
+                    <div class="leftSideFirstTitle">CHRISTMAS GIFTS</div>
+                    <div class="leftSideSecondTitle">STAY ONLINE!</div>
+                    <div class="leftRectangle"></div>
+                    <div class="leftDescription">
+                       Stay online and get gifts!
+                    </div>
+                    <div class="leftImageArea">
+                        <img src="./images/leftImage.png" alt="" />
+                    </div>
+                </div>
+
+                <div class="rightSideMain">
+                    <div class="rightSideTopArea">
+                        <div class="topRightRectangle"></div>
+                        <div class="rightInfoTextArea">
+                            <i id="clockIcon" class="fa-solid fa-bell"></i>
+                            <div class="rightTextSection">
+                                <div class="upperTextRight">FOR THE NEXT REWARD</div>
+                                <div class="upperTime">12h 12m 25s</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rightSideGeneral"></div>
+                </div>
+            </div>
+            <svg id="svg-filter">
+                <filter id="svg-blur">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="1"></feGaussianBlur>
+                </filter>
+            </svg>
+        </div>
+        <script src="js/fontawesome.min.js"></script>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="js/progressbar.js"></script>
+        <script src="js/app.js?v=1"></script>
+    </body>
+</html>

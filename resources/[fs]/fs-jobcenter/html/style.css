@@ -1,0 +1,143 @@
+/* Define the external font */
+@font-face {
+    font-family: 'FantasyFont';
+    src: url('./fonts/BebasNeue.otf') format('opentype'); /* Adjust the path */
+}
+
+/* Apply the external font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'FantasyFont', sans-serif; /* Use the custom font, fallback to sans-serif */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#job-center {
+    background-image: url("img/tablet.png");
+    color: #e0e0e0; /* Softer text color */
+    border-radius: 10px;
+    width: 1324px;
+    height: 882px;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+    display: none;
+    position: relative;
+}
+
+/* Position logo at the very left of the tablet */
+.tablet-logo {
+    position: absolute;
+    top: 9px; /* Aligns with top padding of #job-center */
+    left: 30px; /* Aligns with left padding of #job-center */
+    width: 150px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 2; /* Ensure it appears above other content */
+}
+
+/* Position h1 lower and centered inside the tablet */
+#job-center h1 {
+    font-size: 25.6px;
+    margin-top: 40px;
+    margin-bottom: 18px;
+    position: relative;
+    top: 0;
+    z-index: 1;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6); /* Subtle shadow to reduce glow */
+    color: #ffffff; /* Neutral white for text */
+    font-weight: 400; /* Reduce font weight to avoid extra glow */
+}
+
+/* Only .scrollable-content will scroll */
+#job-center > .scrollable-content {
+    transform: scale(0.92);
+    transform-origin: top center;
+    height: calc(100% - 90px);
+    overflow-y: auto;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+/* Job list styling */
+.job-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16.5px;
+    margin-top: 18px;
+    width: 100%;
+}
+
+.job-box {
+    background-color: #1cb7ff1c;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.job-box:hover {
+    transform: scale(1.05);
+}
+
+.job-box img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 2px solid #1cb7ff1c;
+}
+
+.job-info {
+    padding: 7.2px;
+}
+
+.job-title {
+    font-size: 20.6px;
+    margin-bottom: 7.2px;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5); /* Subtle shadow to reduce glow */
+}
+
+.select-btn {
+    background-color: #1cb7ff1c;
+    color: #fff;
+    border: none;
+    padding: 5.4px;
+    font-size: 40.7px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 7.2px;
+    transition: background 0.3s;
+}
+
+.select-btn:hover {
+    background-color: #1cb7ff1c;
+}
+
+/* Custom Scrollbar Styling for scrollable content */
+#job-center .scrollable-content::-webkit-scrollbar {
+    width: 7.2px;
+}
+
+#job-center .scrollable-content::-webkit-scrollbar-track {
+    background: #1cb7ff1c;
+    border-radius: 10px;
+}
+
+#job-center .scrollable-content::-webkit-scrollbar-thumb {
+    background: #1cb7ff1c;
+    border-radius: 10px;
+}
+
+#job-center .scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: #1cb7ff1c;
+}

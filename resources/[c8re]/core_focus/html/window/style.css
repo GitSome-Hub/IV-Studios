@@ -1,0 +1,395 @@
+/* ---
+   Modern & Clean "Apple-like" Window Design
+   V5 - True Dynamic Scaling with Viewport Units
+   --- */
+
+:root {
+    --main-color: #007AFF;
+    --main-color-alpha-08: rgba(0, 122, 255, 0.8);
+    --main-color-alpha-05: rgba(0, 122, 255, 0.5);
+    --main-color-alpha-03: rgba(0, 122, 255, 0.3);
+    --main-color-alpha-02: rgba(0, 122, 255, 0.2);
+    --main-color-alpha-01: rgba(0, 122, 255, 0.1);
+
+    --background-main: rgba(22, 25, 30, 0.5);
+    --background-item: rgba(30, 33, 39, 0.8);
+    --text-primary: #EAEAEA;
+    --text-secondary: #a0a0a0;
+    --accent-primary: #A450E4;
+    --accent-gradient-start: rgba(164, 80, 228, 0.4);
+    --accent-glow: rgba(164, 80, 228, 0.3);
+    --shadow-light: rgba(255, 255, 255, 0.05);
+    --shadow-dark: rgba(0, 0, 0, 0.5);
+    /* --scale-factor is no longer needed */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* Body size is now set by JS to match the DUI resolution from LUA */
+    width: 1920px; /* Default fallback */
+    height: 1080px; /* Default fallback */
+    background: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+                 Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+.window-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4vmin; /* Use vmin for padding that respects the smaller dimension */
+    box-sizing: border-box;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+/* Background Effects */
+.border-background, .border-glow, .grid-overlay {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.border-background {
+    bottom: 0;
+    background: linear-gradient(-45deg, transparent, transparent, rgba(255, 255, 255, 0.1), transparent, transparent);
+    background-size: 400% 400%;
+    animation: gradient 2s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 200% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+
+
+/* Main Content Container */
+.content-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    pointer-events: all;
+    padding: 2vmin;
+    box-sizing: border-box;
+}
+
+/* Title Section - Scaled with vw */
+.window-title {
+    font-size: 7vw; /* Title font size is 7% of the DUI width */
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-bottom: 2vh; /* Margin based on viewport height */
+    padding: 1vh 1vw;
+    color: transparent;
+    background: linear-gradient(70deg, #ffffff 20%, #cacaca 45%, transparent 55%, #cacaca 75%, #ffffff 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: wave-animation 3s infinite linear;
+}
+
+@keyframes wave-animation {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Data Display Section - Flexbox for dynamic items */
+.window-data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: calc(15px * var(--scale-factor, 1)); /* Gap scales with wall dimensions */
+    width: 100%;
+    align-items: flex-start;
+}
+
+/* Individual Data Items - Sharp, single-line, dynamic width */
+.data-item {
+    display: inline-flex;
+    align-items: baseline;
+    border-radius: 10px;
+    background-color: var(--background-main);
+    box-shadow: inset 0 0 0 1.5px var(--shadow-light), 0 10px 40px var(--shadow-dark);
+    padding: calc(12px * var(--scale-factor, 1)) calc(20px * var(--scale-factor, 1)); /* Padding scales with wall dimensions */
+    transition: all 0.3s ease;
+    animation: dataItemFadeIn 0.5s ease-out forwards;
+    opacity: 0;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+    transform: translateY(calc(20px * var(--scale-factor, 1)));
+}
+
+.data-item:hover {
+    background: rgba(0, 0, 0, 0.4);
+    transform: translateY(calc(-2px * var(--scale-factor, 1)));
+}
+
+.data-label, .data-separator, .data-value {
+    font-size: calc(22px * var(--scale-factor, 1)); /* All text inside the box scales with wall dimensions */
+    white-space: nowrap; /* Prevent wrapping inside the box */
+}
+
+.data-label {
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.data-separator {
+    font-weight: 300;
+    color: var(--main-color-alpha-05);
+    margin: 0 calc(10px * var(--scale-factor, 1));
+}
+
+.data-value {
+    font-weight: 500;
+    color: var(--main-color);
+}
+
+/* Style Variations */
+
+/* Basic Style - Default layout but with gray outline instead of background */
+.style-basic .data-item {
+    background: transparent;
+    border: 2px solid var(--text-secondary);
+    box-shadow: none;
+}
+
+.style-basic .data-item:hover {
+    border-color: var(--main-color);
+    background: var(--main-color-alpha-01);
+}
+
+/* List Style - Column layout with full width items */
+.style-list .window-data {
+    flex-direction: column;
+    align-items: center;
+    gap: calc(10px * var(--scale-factor, 1));
+    max-width: 100%;
+}
+
+.style-list .data-item {
+    width: calc(100% - calc(40px * var(--scale-factor, 1)));
+    max-width: 100%;
+    justify-content: space-between;
+    flex: 1;
+    min-height: calc(50px * var(--scale-factor, 1));
+    box-sizing: border-box;
+}
+
+/* Basic List Style - Column layout without backgrounds */
+.style-basiclist .window-data {
+    flex-direction: column;
+    align-items: center;
+    gap: calc(8px * var(--scale-factor, 1));
+    max-width: 100%;
+}
+
+.style-basiclist .data-item {
+    width: calc(100% - calc(24px * var(--scale-factor, 1)));
+    max-width: 100%;
+    justify-content: space-between;
+    flex: 1;
+    min-height: calc(40px * var(--scale-factor, 1));
+    background: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.6);
+    border-radius: 0;
+    padding: calc(8px * var(--scale-factor, 1)) calc(12px * var(--scale-factor, 1));
+    box-sizing: border-box;
+}
+
+.style-basiclist .data-item:hover {
+    background: var(--main-color-alpha-01);
+    transform: none;
+}
+
+.style-basiclist .data-item:last-child {
+    border-bottom: none;
+}
+
+/* Image Style - List layout with background images */
+.style-image .window-data {
+    flex-direction: column;
+    align-items: center;
+    gap: calc(12px * var(--scale-factor, 1));
+    max-width: 100%;
+}
+
+.style-image .data-item {
+    width: calc(100% - calc(40px * var(--scale-factor, 1)));
+    max-width: 100%;
+    min-height: calc(80px * var(--scale-factor, 1));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.style-image .data-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    z-index: 1;
+}
+
+.style-image .image-overlay {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-weight: 600;
+    padding: calc(16px * var(--scale-factor, 1));
+    align-self: flex-start;
+}
+
+/* Progress Style - Like basiclist but with progress bars instead of values */
+.style-progress .window-data {
+    flex-direction: column;
+    align-items: center;
+    gap: calc(8px * var(--scale-factor, 1));
+    max-width: 100%;
+}
+
+.style-progress .data-item {
+    width: calc(100% - calc(16px * var(--scale-factor, 1)));
+    max-width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+    min-height: calc(35px * var(--scale-factor, 1));
+    background: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.6);
+    border-radius: 0;
+    padding: calc(6px * var(--scale-factor, 1)) calc(8px * var(--scale-factor, 1));
+    box-sizing: border-box;
+}
+
+.style-progress .data-item:hover {
+    background: var(--main-color-alpha-01);
+    transform: none;
+}
+
+.style-progress .data-item:last-child {
+    border-bottom: none;
+}
+
+.style-progress .data-label {
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: calc(16px * var(--scale-factor, 1));
+    margin-bottom: calc(4px * var(--scale-factor, 1));
+    text-align: left;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: calc(6px * var(--scale-factor, 1));
+    width: 100%;
+}
+
+.progress-bar-bg {
+    flex: 1;
+    height: calc(10px * var(--scale-factor, 1));
+    background: #000;
+    border: 1px solid var(--main-color-alpha-03);
+    border-radius: calc(5px * var(--scale-factor, 1));
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--main-color);
+    transition: width 0.8s ease;
+    border-radius: calc(4px * var(--scale-factor, 1));
+}
+
+.progress-text {
+    color: var(--main-color);
+    font-size: calc(18px * var(--scale-factor, 1));
+    font-weight: 500;
+    min-width: calc(40px * var(--scale-factor, 1));
+    text-align: right;
+}
+
+/* Cards Style - Grid layout with card-like appearance */
+.style-cards .window-data {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(200px * var(--scale-factor, 1)), 1fr));
+    gap: calc(15px * var(--scale-factor, 1));
+    max-width: 100%;
+}
+
+.style-cards .data-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: calc(100px * var(--scale-factor, 1));
+    background: linear-gradient(135deg, var(--background-main), var(--background-item));
+    border: 1px solid var(--main-color-alpha-02);
+}
+
+.style-cards .data-label {
+    margin-bottom: calc(8px * var(--scale-factor, 1));
+    font-size: calc(18px * var(--scale-factor, 1));
+}
+
+.style-cards .data-value {
+    font-size: calc(28px * var(--scale-factor, 1));
+    font-weight: 700;
+}
+
+/* Compact Style - Smaller, tighter layout */
+.style-compact .window-data {
+    gap: calc(8px * var(--scale-factor, 1));
+}
+
+.style-compact .data-item {
+    padding: calc(6px * var(--scale-factor, 1)) calc(12px * var(--scale-factor, 1));
+    border-radius: 6px;
+}
+
+.style-compact .data-label,
+.style-compact .data-value {
+    font-size: calc(16px * var(--scale-factor, 1));
+}
+
+
+
+/* Keyframe Animations */
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes slowGlow { from { opacity: 0.5; } to { opacity: 0.8; } }
+@keyframes gridPulse { from { opacity: 0.6; } to { opacity: 1; } }
+@keyframes dataItemFadeIn { to { opacity: 1; transform: translateY(0); } }
+

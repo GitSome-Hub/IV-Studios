@@ -1,0 +1,559 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+:root {
+    /* Color Palette */
+    --background-main: rgba(22, 25, 30, 0.5);
+    --background-item: rgba(30, 33, 39, 0.8);
+    --text-primary: #EAEAEA;
+    --text-secondary: #a0a0a0;
+    --accent-primary: #A450E4;
+    --accent-gradient-start: rgba(164, 80, 228, 0.4);
+    --accent-glow: rgba(164, 80, 228, 0.3);
+    --shadow-light: rgba(255, 255, 255, 0.05);
+    --shadow-dark: rgba(0, 0, 0, 0.5);
+
+    /* Sizes */
+    --radial-item-size: 75px;
+    --radial-icon-size: 24px;
+    --radial-text-size: 11px;
+    --radial-center-button-size: 60px;
+    --radial-center-button-icon-size: 28px;
+    --nui-dot-size: 26px;
+    /* Slightly larger to accommodate the border */
+    --nui-dot-icon-size: 12px;
+
+    /* Animation Timings */
+    --anim-duration-fast: 0.2s;
+    --anim-duration-medium: 0.4s;
+    --anim-duration-slow: 0.6s;
+    --anim-timing-function-enter: cubic-bezier(0.2, 1, 0.4, 1);
+    --anim-timing-function-exit: cubic-bezier(0.6, 0, 0.8, 0);
+
+    /* Dynamic Properties */
+    --dynamic-dot-color: var(--accent-primary);
+    --dynamic-menu-color: var(--accent-primary);
+    --dynamic-menu-color-gradient-start: var(--accent-gradient-start);
+
+    --c-glass: #bbbbbc;
+    --c-light: #fff;
+    --c-dark: #000;
+    
+    --c-content: #224;
+    --c-action: #0052f5;
+    
+    --c-bg: #E8E8E9;
+    
+    --glass-reflex-dark: 1;
+    --glass-reflex-light: 1;
+    
+    --saturation: 150%;
+}
+
+/* Base & Body */
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: transparent;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+    /* Optimize rendering performance */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Global optimization for all animated elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Ensure smooth animations don't block position updates */
+@media (prefers-reduced-motion: no-preference) {
+
+    .nui-target-dot,
+    .player-tag,
+    #radial-menu-container,
+    .radial-menu-item {
+        animation-fill-mode: both;
+        animation-play-state: running;
+    }
+}
+
+#nui-dots-container,
+#context-dots-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5000;
+}
+
+/* --- NEW: SVG-Masked Hexagon Outline Target Dot --- */
+@keyframes spin-hexagon {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    70% {
+        transform: rotate(300deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.nui-target-dot {
+    position: absolute;
+    width: var(--nui-dot-size);
+    height: var(--nui-dot-size);
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5001;
+    transition: transform var(--anim-duration-fast) ease;
+    filter:
+        drop-shadow(0 0 3px var(--dynamic-dot-color)) drop-shadow(0 0 8px var(--dynamic-dot-color));
+    /* GPU acceleration for smooth position updates */
+    will-change: transform, left, top;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.nui-target-dot.non-interactable {
+    opacity: 0.2;
+    pointer-events: none;
+    /* This makes the element not hoverable */
+    filter: none;
+    /* This removes the drop-shadow glow */
+}
+
+/* The spinning hexagon outline shape */
+.nui-target-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--dynamic-dot-color);
+
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 86.6 100'%3E%3Cpath d='M86.6 25v50L43.3 100 0 75V25L43.3 0 86.6 25z M43.3 8.7L8.7 30.4v39.2l34.6 21.7 34.6-21.7V30.4L43.3 8.7z'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 86.6 100'%3E%3Cpath d='M86.6 25v50L43.3 100 0 75V25L43.3 0 86.6 25z M43.3 8.7L8.7 30.4v39.2l34.6 21.7 34.6-21.7V30.4L43.3 8.7z'/%3E%3C/svg%3E");
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+
+    animation: spin-hexagon 3s infinite linear;
+    transition: all var(--anim-duration-fast) ease;
+}
+
+/* The stable icon on top */
+.nui-target-dot::before {
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Solid";
+    font-weight: 900;
+    content: "\f067";
+    color: var(--text-primary);
+    font-size: var(--nui-dot-icon-size);
+    text-shadow: 0 0 5px var(--shadow-dark);
+    z-index: 5000;
+}
+
+.nui-target-dot:hover {
+    transform: translate(-50%, -50%) scale(1.2) !important;
+}
+
+.nui-target-dot:hover::after {
+    background-color: white;
+    filter: drop-shadow(0 0 8px white);
+}
+
+.nui-target-dot:hover::before {
+    color: white;
+}
+
+.nui-target-dot.dot-type-bonnet::before {
+    content: "\f0ad";
+}
+
+.nui-target-dot.dot-type-boot::before {
+    content: "\f187";
+}
+
+/* --- Radial Menu & Blur Masking Animation --- */
+@keyframes maskBlurActivation {
+    from {
+        background-color: rgba(22, 25, 30, 0.95);
+    }
+
+    to {
+        background-color: var(--background-main);
+    }
+}
+
+#radial-menu-container {
+    position: absolute;
+    display: none;
+    border-radius: 50%;
+    pointer-events: auto;
+    z-index: 10000;
+
+    background-color: var(--background-main);
+    box-shadow: inset 0 0 0 1.5px var(--shadow-light), 0 10px 40px var(--shadow-dark);
+    transform: scale(0.7);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: var(--anim-duration-medium);
+    transition-timing-function: var(--anim-timing-function-enter);
+    /* GPU acceleration for smooth position updates during animations */
+    will-change: transform, left, top, opacity;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+
+
+#radial-menu-container.is-blur-activating {
+    animation: maskBlurActivation 0.4s ease-out forwards;
+}
+
+#radial-menu-container.radial-menu-container-visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#radial-menu-container:not(.radial-menu-container-visible) {
+    transition-duration: var(--anim-duration-fast);
+    transition-timing-function: var(--anim-timing-function-exit);
+}
+
+/* NEW: Scroll active line indicator */
+#radial-menu-container.scroll-active::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    /* Position below the main circle */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 10px;
+    background-color: var(--dynamic-menu-color);
+    opacity: 0.7;
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--dynamic-menu-color);
+}
+
+
+.radial-menu-item {
+    position: absolute;
+    width: var(--radial-item-size);
+    height: var(--radial-item-size);
+    color: var(--text-secondary);
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 9000;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: var(--anim-duration-fast);
+    transition-timing-function: ease-out;
+}
+
+.radial-menu-item:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+    background: radial-gradient(circle, var(--dynamic-menu-color-gradient-start) 0%, transparent 70%);
+    color: var(--text-primary);
+}
+
+.radial-menu-item i,
+.radial-menu-item:hover i,
+.radial-menu-item:hover span {
+    transition: color var(--anim-duration-fast) ease;
+}
+
+.radial-menu-item:hover i,
+.radial-menu-item:hover span {
+    color: var(--dynamic-menu-color);
+}
+
+.radial-menu-item i {
+    font-size: var(--radial-icon-size);
+    margin-bottom: 5px;
+    pointer-events: none;
+}
+
+.radial-menu-item span {
+    font-size: var(--radial-text-size);
+    font-weight: 500;
+    line-height: 1.2;
+    max-width: calc(var(--radial-item-size) - 10px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.radial-menu-center-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--radial-center-button-size);
+    height: var(--radial-center-button-size);
+    background-color: var(--dynamic-menu-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    font-size: var(--radial-center-button-icon-size);
+    cursor: pointer;
+    z-index: 9000;
+    /* Higher than items */
+    box-shadow: 0 0 20px -5px var(--dynamic-menu-color), inset 0 0 8px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    transition: all var(--anim-duration-fast) ease;
+}
+
+.radial-menu-center-button:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    filter: brightness(1.2);
+}
+
+.radial-menu-item.enter-active,
+.radial-menu-center-button.enter-active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition-duration: var(--anim-duration-medium);
+    transition-timing-function: var(--anim-timing-function-enter);
+}
+
+.radial-menu-item.exit-active,
+.radial-menu-center-button.exit-active {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition-duration: var(--anim-duration-fast);
+    transition-timing-function: var(--anim-timing-function-exit);
+}
+
+/* NEW: Search Bar Styles */
+.radial-menu-search-container {
+    position: absolute;
+    top: -55px;
+    /* Positioned above the menu circle */
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    /* Start lower for animation */
+    z-index: 15;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s var(--anim-timing-function-enter);
+    pointer-events: none;
+    /* Initially not interactive */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-item);
+    padding: 8px 12px;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px var(--shadow-dark);
+}
+
+#radial-menu-container.scroll-active .radial-menu-search-container {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: all;
+    /* Make it interactive when visible */
+}
+
+.radial-menu-search-container i {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.radial-menu-search-input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    width: 150px;
+}
+
+.radial-menu-search-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+
+.radial-click-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, transparent 0%, var(--dynamic-menu-color) 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.radial-click-glow.animate {
+    animation: emanateGlow var(--anim-duration-medium) ease-out forwards;
+}
+
+@keyframes emanateGlow {
+    to {
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+    }
+}
+
+@keyframes context-appear {
+    from {
+        transform: translateY(50px) scale(0.3);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+#context-dots-container {
+    top: auto;
+    bottom: 12vh;
+    /* This was changed in the previous step */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    pointer-events: auto;
+    padding: 10px;
+    background-color: var(--background-main);
+    border-radius: 50px;
+    box-shadow: inset 0 0 0 1.5px var(--shadow-light), 0 5px 20px var(--shadow-dark);
+    z-index: 5002;
+    display: none;
+    animation: context-appear 0.4s var(--anim-timing-function-enter) forwards;
+    
+}
+
+.context-dot {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all var(--anim-duration-fast) ease;
+}
+
+.context-dot:hover {
+    transform: scale(1.1) translateY(-5px);
+    color: var(--accent-primary);
+    background-color: var(--accent-primary);
+    box-shadow: 0 0 20px var(--accent-primary);
+    color: white;
+}
+
+#radial-menu-container.context-active {
+    --radial-item-size: 95px;
+    --radial-icon-size: 30px;
+    --radial-text-size: 12px;
+    --radial-center-button-size: 70px;
+    --radial-center-button-icon-size: 32px;
+}
+
+#radial-menu-container.context-active .radial-menu-item span {
+    font-weight: 700;
+}
+
+.radial-menu-item .sub-menu-indicator {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    transition: all var(--anim-duration-fast) ease-out;
+    z-index: 1;
+}
+
+.radial-menu-item:hover .sub-menu-indicator {
+    color: var(--dynamic-menu-color);
+    opacity: 1;
+}
+
+#player-tags-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 4999;
+    /* Below the target dots */
+}
+
+.player-tag {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    /* Centers horizontally, positions above the coordinates */
+    background-color: var(--background-item);
+    color: var(--text-primary);
+    font-family: "Poppins", sans-serif;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px var(--shadow-dark);
+    border: 1px solid var(--shadow-light);
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+    /* Start hidden for fade-in */
+    /* GPU acceleration for smooth position updates */
+    will-change: transform, left, top, opacity;
+    backface-visibility: hidden;
+}
+
+.player-tag.visible {
+    opacity: 1;
+}
+
+.player-tag .tag-id {
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-left: 5px;
+}

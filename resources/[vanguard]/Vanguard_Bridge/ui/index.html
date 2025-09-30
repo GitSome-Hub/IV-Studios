@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Contextual</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/7e385d2901.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Menu Principal -->
+        <div class="context-menu-container" style="display: none;">
+            <div class="header">
+                <div class="title"></div>
+                <div class="x" onclick="closeMenu()"><i class="fas fa-times"></i></div>
+            </div>
+            <div class="menu-contents"></div>
+        </div>
+    </div>
+
+    <!-- Contêiner de notificações -->
+    <div id="notification-container"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>

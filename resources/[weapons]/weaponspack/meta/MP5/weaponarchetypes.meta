@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+		  <modelName>w_sb_mp5v3</modelName>
+		  <txdName>w_sb_mp5v3</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="500"/>
+		</Item>
+		<Item>
+		  <modelName>w_sb_mp5v3_mag1</modelName>
+		  <txdName>w_sb_mp5v3_mag1</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_mp5v3_supp</modelName>
+		  <txdName>w_at_mp5v3_supp</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_scope_mp5v3_2</modelName>
+		  <txdName>w_at_scope_mp5v3_2</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

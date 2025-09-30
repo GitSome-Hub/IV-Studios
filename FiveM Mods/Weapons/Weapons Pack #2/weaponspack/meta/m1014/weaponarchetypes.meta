@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+			<modelName>w_sg_m1014</modelName>
+			<txdName>w_sg_m1014</txdName>
+			<ptfxAssetName></ptfxAssetName>
+			<lodDist value="300"/>
+		</Item>		
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

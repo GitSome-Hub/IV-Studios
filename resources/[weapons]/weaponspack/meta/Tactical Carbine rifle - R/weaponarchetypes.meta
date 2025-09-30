@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+		  <modelName>w_ar_tacticalcarbinerifle</modelName>
+		  <txdName>w_ar_tacticalcarbinerifle</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="500"/>
+		</Item>
+		<Item>
+		  <modelName>w_ar_tacticalcarbinerifle_mag1</modelName>
+		  <txdName>w_ar_tacticalcarbinerifle_mag1</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_tacticalcarbinerifle_supp</modelName>
+		  <txdName>w_at_tacticalcarbinerifle_supp</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_tacticalcarbinerifle_afgrip</modelName>
+		  <txdName>w_at_tacticalcarbinerifle_afgrip</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_tacticalcarbinerifle_scope_medium</modelName>
+		  <txdName>w_at_tacticalcarbinerifle_scope_medium</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+		<Item>
+		  <modelName>w_at_tacticalcarbinerifle_flsh</modelName>
+		  <txdName>w_at_tacticalcarbinerifle_flsh</txdName>
+		  <ptfxAssetName>NULL</ptfxAssetName>
+		  <lodDist value="100"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

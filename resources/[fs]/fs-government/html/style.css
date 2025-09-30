@@ -1,0 +1,1229 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* COMPLETE TRANSPARENCY - NO BACKGROUNDS ANYWHERE */
+html {
+    background: transparent !important;
+    background-color: transparent !important;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    background: transparent !important;
+    background-color: transparent !important;
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff !important;
+}
+
+/* Remove ALL backgrounds from ALL elements and force white text */
+*, *:before, *:after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #ffffff !important;
+}
+
+/* Force specific elements to be white */
+h1, h2, h3, h4, h5, h6, p, span, div, i {
+    color: #ffffff !important;
+}
+
+#announcement-title, #announcement-message {
+    color: #ffffff !important;
+}
+
+/* ONLY the announcement card gets styling */
+.announcement-content {
+    /* Override the universal transparency ONLY for the announcement */
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%) !important;
+    background-color: unset !important;
+    border-radius: 20px !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    position: relative !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    /* Perfect corner rendering */
+    -webkit-background-clip: padding-box !important;
+    background-clip: padding-box !important;
+    isolation: isolate !important;
+}
+
+/* Type-specific backgrounds - vibrant gradients with shine */
+.announcement-content.defcon {
+    background: linear-gradient(135deg, rgba(255, 56, 56, 0.95) 0%, rgba(204, 0, 0, 0.95) 100%) !important;
+    border: 1px solid rgba(255, 100, 100, 0.5) !important;
+    box-shadow: none !important;
+    animation: defcon-pulse 1.5s infinite alternate;
+}
+
+.announcement-content.election {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%) !important;
+    border: 1px solid rgba(150, 150, 255, 0.5) !important;
+    box-shadow: none !important;
+}
+
+.announcement-content.emergency {
+    background: linear-gradient(135deg, rgba(214, 48, 49, 0.95) 0%, rgba(255, 107, 107, 0.95) 100%) !important;
+    border: 1px solid rgba(255, 120, 120, 0.5) !important;
+    box-shadow: none !important;
+    animation: emergency-flash 0.8s infinite alternate;
+}
+
+.announcement-content.government {
+    background: linear-gradient(135deg, rgba(0, 184, 148, 0.95) 0%, rgba(0, 160, 133, 0.95) 100%) !important;
+    border: 1px solid rgba(100, 255, 200, 0.5) !important;
+    box-shadow: none !important;
+}
+
+.announcement-content.law_enforcement {
+    background: linear-gradient(135deg, rgba(45, 52, 54, 0.95) 0%, rgba(99, 110, 114, 0.95) 100%) !important;
+    border: 1px solid rgba(150, 150, 150, 0.5) !important;
+    box-shadow: none !important;
+}
+
+.announcement-content.public_service {
+    background: linear-gradient(135deg, rgba(0, 184, 148, 0.95) 0%, rgba(85, 163, 255, 0.95) 100%) !important;
+    border: 1px solid rgba(120, 200, 255, 0.5) !important;
+    box-shadow: none !important;
+}
+
+/* Container - completely invisible */
+.announcement-container {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-200px);
+    width: 450px;
+    max-width: 90vw;
+    z-index: 999999;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Ensure absolutely no background */
+    background: none !important;
+    background-color: transparent !important;
+}
+
+.announcement-container.show {
+    transform: translateX(-50%) translateY(0px);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.announcement-container.hidden {
+    transform: translateX(-50%) translateY(-200px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Shimmer effect for announcement */
+.announcement-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+    animation: shimmer 2s infinite;
+    z-index: 1;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-200%); }
+    100% { transform: translateX(200%); }
+}
+
+/* Header styling */
+.announcement-header {
+    padding: 20px 25px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.announcement-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #ffffff !important;
+    animation: pulse 2s infinite ease-in-out;
+    flex-shrink: 0;
+    text-shadow: none !important;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+.announcement-title-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.announcement-title {
+    color: #ffffff !important;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: none !important;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+
+/* Body styling */
+.announcement-body {
+    padding: 20px 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.announcement-message {
+    color: #ffffff !important;
+    font-size: 14px;
+    line-height: 1.6;
+    text-shadow: none !important;
+    margin: 0;
+}
+
+/* Footer styling */
+.announcement-footer {
+    padding: 15px 25px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.announcement-timestamp {
+    font-size: 12px;
+    color: #ffffff !important;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-shadow: none !important;
+}
+
+.announcement-timestamp::before {
+    content: '\f017';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 10px;
+    color: #ffffff !important;
+}
+
+/* Progress bar */
+.announcement-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(255, 255, 255, 1) 50%, 
+        rgba(255, 255, 255, 0.9) 100%
+    ) !important;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+    width: 100%;
+    box-shadow: none !important;
+}
+
+/* Animations */
+@keyframes defcon-pulse {
+    0% { 
+        border-color: rgba(255, 100, 100, 0.5) !important;
+        opacity: 0.95 !important;
+    }
+    100% { 
+        border-color: rgba(255, 100, 100, 0.8) !important;
+        opacity: 1 !important;
+    }
+}
+
+@keyframes emergency-flash {
+    0% { 
+        border-color: rgba(255, 120, 120, 0.5) !important;
+        opacity: 0.95 !important;
+    }
+    100% { 
+        border-color: rgba(255, 120, 120, 0.8) !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 500px) {
+    .announcement-container {
+        left: 20px;
+        right: 20px;
+        width: auto;
+        transform: translateX(0) translateY(-200px);
+    }
+    
+    .announcement-container.show {
+        transform: translateX(0) translateY(0px);
+    }
+    
+    .announcement-container.hidden {
+        transform: translateX(0) translateY(-200px);
+    }
+    
+    .announcement-title {
+        font-size: 14px;
+    }
+    
+    .announcement-message {
+        font-size: 13px;
+    }
+}
+
+/* Smooth entrance/exit animations */
+@keyframes slideDown {
+    from {
+        transform: translateX(-50%) translateY(-200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(0px);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-50%) translateY(-200px);
+        opacity: 0;
+    }
+}
+
+/* ================================
+   PERMIT DOCUMENT STYLING - MODERN DESIGN
+   ================================ */
+
+/* Permit Document Container - Full Screen Overlay */
+.permit-document-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    pointer-events: none;
+}
+
+.permit-document-container.hidden {
+    display: none;
+}
+
+/* Completely remove overlay */
+.permit-document-overlay {
+    display: none;
+}
+
+/* Modern A4 Document with Glass Effect */
+.permit-document-page {
+    position: relative;
+    width: 650px;
+    height: auto;
+    max-width: 90vw;
+    max-height: 95vh;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+    color: #0f172a !important;
+    box-shadow: 
+        0 25px 50px rgba(15, 23, 42, 0.15),
+        0 0 0 1px rgba(148, 163, 184, 0.1),
+        0 0 0 3px rgba(59, 130, 246, 0.05) !important;
+    border-radius: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !important;
+    font-size: 13px;
+    line-height: 1.5;
+    z-index: 10000;
+    border: none;
+    animation: documentSlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+    pointer-events: all;
+    position: relative;
+    
+    /* Premium paper texture effect */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            linear-gradient(45deg, transparent 24%, rgba(15, 23, 42, 0.005) 25%, rgba(15, 23, 42, 0.005) 26%, transparent 27%, transparent 74%, rgba(15, 23, 42, 0.005) 75%, rgba(15, 23, 42, 0.005) 76%, transparent 77%);
+        background-size: 20px 20px;
+        pointer-events: none;
+        z-index: -1;
+    }
+}
+
+/* Custom scrollbar for webkit browsers */
+.permit-document-page::-webkit-scrollbar {
+    width: 8px;
+}
+
+.permit-document-page::-webkit-scrollbar-track {
+    background: rgba(241, 245, 249, 0.3);
+    border-radius: 4px;
+}
+
+.permit-document-page::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.3);
+    border-radius: 4px;
+}
+
+.permit-document-page::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.5);
+}
+
+/* Add subtle watermark pattern */
+.permit-document-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.015) 0%, transparent 40%),
+        radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.015) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes documentSlideIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Override global transparency for permit document */
+.permit-document-page * {
+    background: transparent !important;
+    color: #1e293b !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Premium Government Header */
+.permit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 40px 50px;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.permit-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #dc2626, #ea580c, #d97706, #ca8a04, #65a30d, #16a34a, #059669, #0891b2, #0284c7, #2563eb, #4f46e5, #7c3aed, #9333ea);
+    background-size: 300% 100%;
+    animation: headerShimmer 8s linear infinite;
+}
+
+.permit-header::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: 
+        linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%),
+        linear-gradient(-45deg, transparent 30%, rgba(59, 130, 246, 0.2) 50%, transparent 70%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+@keyframes headerShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.permit-logo, .permit-seal {
+    font-size: 48px;
+    color: #f8fafc;
+    width: 60px;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    position: relative;
+}
+
+.permit-logo::after, .permit-seal::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border: 2px solid rgba(248, 250, 252, 0.2);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.permit-header-text {
+    text-align: center;
+    flex: 1;
+}
+
+.permit-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    position: relative;
+}
+
+.permit-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #f8fafc, transparent);
+}
+
+.permit-header h2 {
+    font-size: 14px;
+    color: #cbd5e1 !important;
+    margin: 12px 0 0 0;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* Executive Document Title */
+.permit-title {
+    text-align: center;
+    margin: 0;
+    padding: 35px 50px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-bottom: 4px solid #1e293b;
+    position: relative;
+}
+
+.permit-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #dc2626, #2563eb, #7c3aed);
+    animation: titleShimmer 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleShimmer {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.permit-title h3 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 1px 1px 2px rgba(30, 41, 59, 0.1);
+}
+
+.permit-underline {
+    display: none;
+}
+
+/* Executive Information Grid */
+.permit-info-table {
+    width: 100%;
+    margin: 0;
+    padding: 30px 50px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.permit-info-table td {
+    padding: 18px 25px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.permit-info-table tr:last-child td {
+    border-bottom: none;
+}
+
+.permit-info-table tr:hover {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(30, 41, 59, 0.08);
+}
+
+.label-cell {
+    font-weight: 700;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+    color: #f8fafc !important;
+    width: 30%;
+    text-align: left;
+    padding: 18px 25px !important;
+    border-right: 3px solid #2563eb;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.label-cell::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: linear-gradient(180deg, #2563eb, #7c3aed);
+}
+
+.value-cell {
+    color: #1e293b !important;
+    padding: 18px 25px !important;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    background: #ffffff;
+    border-left: 3px solid transparent;
+    position: relative;
+}
+
+.value-cell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #10b981, #3b82f6);
+}
+
+/* Modern Description Section */
+.permit-description-section {
+    margin-bottom: 35px;
+}
+
+.section-title {
+    font-weight: 600;
+    color: #475569 !important;
+    margin-bottom: 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    position: relative;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 1px;
+}
+
+.permit-description {
+    color: #374151 !important;
+    line-height: 1.7;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.6) 0%, rgba(241, 245, 249, 0.4) 100%) !important;
+    border-radius: 8px;
+    border-left: 4px solid #3b82f6 !important;
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Modern Authorization Section */
+.permit-authorization {
+    margin-bottom: 35px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(217, 119, 6, 0.05) 100%) !important;
+    border-radius: 10px;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.permit-authorization::before {
+    content: '⚖️';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.auth-text {
+    color: #92400e !important;
+    font-style: italic;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Modern Signatures Section */
+.permit-signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-top: 50px;
+    gap: 30px;
+}
+
+.signature-section {
+    width: 45%;
+    padding: 20px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.4) 0%, rgba(241, 245, 249, 0.2) 100%);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.signature-line {
+    border-bottom: 2px solid #1e293b !important;
+    height: 1px;
+    margin-bottom: 15px;
+    width: 100%;
+    position: relative;
+}
+
+.signature-line::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #2563eb, transparent);
+    opacity: 0.3;
+}
+
+/* New signature container for proper positioning */
+.signature-container {
+    position: relative;
+    width: 100%;
+}
+
+.signature-line-with-text {
+    position: relative;
+    border-bottom: 2px solid #1e293b;
+    height: 40px;
+    margin-bottom: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(to right, transparent 0%, rgba(30, 41, 59, 0.05) 20%, rgba(30, 41, 59, 0.05) 80%, transparent 100%);
+}
+
+.signature-label {
+    font-size: 9px;
+    color: #64748b !important;
+    text-align: center;
+    margin-bottom: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.signature-name {
+    font-weight: 600;
+    color: #1e293b !important;
+    text-align: center;
+    font-size: 14px;
+    background: linear-gradient(135deg, #1e293b, #3b82f6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 5px;
+}
+
+.signature-title {
+    color: #64748b !important;
+    text-align: center;
+    font-size: 11px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Handwritten Signature Styling */
+.signature-style {
+    font-family: 'Brush Script MT', 'Lucida Handwriting', 'Dancing Script', cursive !important;
+    font-size: 18px !important;
+    color: #1e293b !important;
+    font-weight: 500 !important;
+    text-shadow: 1px 1px 2px rgba(30, 41, 59, 0.2);
+    background: none !important;
+    display: inline-block;
+    transform: rotate(-1deg) skewX(-2deg);
+    margin: 0;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: -10px;
+    left: 15px;
+    z-index: 2;
+}
+
+.signature-date {
+    font-size: 9px !important;
+    color: #64748b !important;
+    font-style: italic;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 15px;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !important;
+    font-weight: 400;
+}
+
+.official-seal-section {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.seal-placeholder {
+    border: 3px solid #3b82f6 !important;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.03) 100%) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.seal-placeholder::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    animation: sealRotate 8s linear infinite;
+}
+
+@keyframes sealRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.seal-placeholder i {
+    font-size: 28px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    z-index: 1;
+    position: relative;
+}
+
+.seal-text {
+    font-size: 9px;
+    font-weight: 700;
+    text-align: center;
+    color: #475569 !important;
+    z-index: 1;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Compact Footer Information */
+.permit-footer-info {
+    border-top: 1px solid rgba(226, 232, 240, 0.6) !important;
+    padding: 10px 0;
+    margin-top: 15px;
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.3) 0%, rgba(241, 245, 249, 0.1) 100%);
+    border-radius: 6px;
+    margin: 15px -20px 0 -20px;
+    padding: 10px 20px;
+    flex-shrink: 0;
+}
+
+.footer-line {
+    font-size: 9px;
+    color: #64748b !important;
+    margin-bottom: 3px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.footer-line strong {
+    color: #dc2626 !important;
+    font-weight: 600;
+}
+
+/* Compact Shown By Information */
+.permit-shown-by {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(52, 152, 219, 0.1) !important;
+    background: rgba(52, 152, 219, 0.1) !important;
+    border: 1px solid #3498db !important;
+    border-radius: 4px;
+    padding: 6px 10px;
+}
+
+.permit-shown-by.hidden {
+    display: none;
+}
+
+.shown-by-text {
+    font-size: 9px;
+    color: #2980b9 !important;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.shown-by-text i {
+    color: #2980b9 !important;
+    font-size: 8px;
+}
+
+/* Executive Close Button */
+.permit-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #1e293b, #334155) !important;
+    color: #f8fafc !important;
+    border-radius: 0;
+    width: 50px;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 
+        0 4px 12px rgba(30, 41, 59, 0.3),
+        0 0 0 1px rgba(248, 250, 252, 0.2),
+        inset 0 1px 0 rgba(248, 250, 252, 0.1) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10001;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.permit-close-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #334155, #475569) !important;
+    box-shadow: 
+        0 6px 20px rgba(30, 41, 59, 0.4),
+        0 0 0 1px rgba(248, 250, 252, 0.3),
+        inset 0 1px 0 rgba(248, 250, 252, 0.2) !important;
+}
+
+.permit-close-button i {
+    font-size: 12px;
+    color: #f8fafc !important;
+    margin-right: 6px;
+    transition: transform 0.3s ease;
+}
+
+.permit-close-button:hover i {
+    transform: scale(1.1);
+}
+
+.permit-close-button span {
+    font-size: 9px;
+    color: #f8fafc !important;
+    text-align: center;
+    line-height: 1;
+    font-weight: 600;
+}
+
+/* Status-based styling */
+.permit-document-page[data-status="expired"] .permit-header::before {
+    background: linear-gradient(90deg, #dc2626, #b91c1c, #dc2626);
+}
+
+.permit-document-page[data-status="expired"] .permit-header {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(185, 28, 28, 0.06) 100%);
+    border-color: rgba(220, 38, 38, 0.2) !important;
+}
+
+.permit-document-page[data-status="expired"] .permit-header h1,
+.permit-document-page[data-status="expired"] .permit-title h3 {
+    background: linear-gradient(135deg, #dc2626, #991b1b) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    color: transparent !important;
+}
+
+.permit-document-page[data-status="expired"] .permit-underline {
+    background: linear-gradient(90deg, transparent, #dc2626, #b91c1c, #dc2626, transparent) !important;
+}
+
+.permit-document-page[data-status="suspended"] .permit-header::before {
+    background: linear-gradient(90deg, #f59e0b, #d97706, #f59e0b);
+}
+
+.permit-document-page[data-status="suspended"] .permit-header {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(217, 119, 6, 0.06) 100%);
+    border-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+.permit-document-page[data-status="suspended"] .permit-header h1,
+.permit-document-page[data-status="suspended"] .permit-title h3 {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    color: transparent !important;
+}
+
+.permit-document-page[data-status="suspended"] .permit-underline {
+    background: linear-gradient(90deg, transparent, #f59e0b, #d97706, #f59e0b, transparent) !important;
+}
+
+/* Responsive Design for Creative Layout */
+@media (max-width: 1200px) {
+    .permit-document-page {
+        width: 85vw;
+        max-height: 95vh;
+        font-size: 12px;
+    }
+    
+    .permit-header {
+        padding: 30px 35px;
+    }
+    
+    .permit-title {
+        padding: 25px 35px;
+    }
+    
+    .permit-info-table {
+        padding: 20px 35px;
+    }
+    
+    .permit-header h1 {
+        font-size: 18px;
+    }
+    
+    .permit-header h2 {
+        font-size: 12px;
+    }
+    
+    .permit-title h3 {
+        font-size: 16px;
+    }
+    
+    .permit-info-table td {
+        padding: 8px 12px;
+    }
+    
+    .label-cell {
+        font-size: 9px;
+    }
+    
+    .value-cell {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .permit-document-page {
+        width: 95vw;
+        max-height: 98vh;
+        font-size: 11px;
+    }
+    
+    .permit-header {
+        padding: 20px 25px;
+    }
+    
+    .permit-header h1 {
+        font-size: 24px;
+        letter-spacing: 1px;
+    }
+    
+    .permit-title {
+        padding: 20px 25px;
+    }
+    
+    .permit-info-table {
+        padding: 15px 25px;
+    }
+    
+    .permit-signatures {
+        flex-direction: column;
+        gap: 15px;
+        margin: 15px 0;
+    }
+    
+    .signature-section, .official-seal-section {
+        width: 100%;
+    }
+    
+    .permit-header {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .permit-logo, .permit-seal {
+        font-size: 28px;
+        width: 40px;
+    }
+    
+    .seal-placeholder {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .seal-placeholder i {
+        font-size: 16px;
+    }
+    
+    .seal-text {
+        font-size: 6px;
+    }
+}
+
+@media (max-height: 700px) {
+    .permit-document-page {
+        max-height: 98vh;
+    }
+    
+    .permit-header {
+        padding: 25px 40px;
+    }
+    
+    .permit-title {
+        padding: 20px 40px;
+    }
+    
+    .permit-header {
+        margin-bottom: 12px;
+        padding: 12px;
+    }
+    
+    .permit-title {
+        margin-bottom: 15px;
+    }
+    
+    .permit-info-table {
+        margin-bottom: 15px;
+    }
+    
+    .permit-description-section {
+        margin-bottom: 15px;
+    }
+    
+    .permit-authorization {
+        margin-bottom: 15px;
+    }
+    
+    .permit-signatures {
+        margin: 15px 0;
+    }
+}
