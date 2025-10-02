@@ -1,3 +1,24 @@
+local watch = {
+  -- guess list; we’ll see which ones actually fire
+  'jg-mechanic:server:checkout',
+  'jg-mechanic:server:applyCart',
+  'jg-mechanic:server:applyMods',
+  'jg-mechanic:server:purchase',
+  'jg-mechanic:server:success',
+  'jg-mechanic:server:failure',
+  'jg-mechanic:server:refund',
+  'jg-mechanic:server:log',
+  -- ox_lib callback wrappers JG might use
+  'ox:callback:success',
+  'ox:callback:error'
+}
+
+for _, ev in ipairs(watch) do
+  RegisterNetEvent(ev, function(...)
+    print(('[iv-compat][MECH][%s] %s'):format(GetCurrentResourceName(), ev), json.encode({...}))
+  end)
+end
+
 --
 -- Shops
 --

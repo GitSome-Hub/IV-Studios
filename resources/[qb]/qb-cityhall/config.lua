@@ -10,6 +10,12 @@ Config.AvailableJobs = {                                     -- Only used when n
     ['garbage'] = { ['label'] = 'Garbage Collector', ['isManaged'] = false },
     ['bus'] = { ['label'] = 'Bus Driver', ['isManaged'] = false },
     ['hotdog'] = { ['label'] = 'Hot Dog Stand', ['isManaged'] = false }
+    ['vineyard'] = { ['label'] = 'Vineyard', ['isManaged'] = false }
+    ['mechanic'] = { ['label'] = 'LS Customs', ['isManaged'] = false }
+    ['mechanic2'] = { ['label'] = 'LS Customs', ['isManaged'] = false }
+    ['mechanic3'] = { ['label'] = 'LS Customs', ['isManaged'] = false }
+    ['beeker'] = { ['label'] = 'Beeker\'s Garage', ['isManaged'] = false }
+    ['bennys'] = { ['label'] = 'Benny\'s Original Motor Works', ['isManaged'] = false }
 }
 
 Config.Cityhalls = {

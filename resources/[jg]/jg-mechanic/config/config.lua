@@ -24,8 +24,11 @@ Config.TabletConnectionMaxDistance = 4.0
 
 -- Shops
 Config.Target = "ox_target" -- (shops/stashes only) "qb-target" or "ox_target"
-Config.UseSocietyFund = true -- set to false to use player balance
+Config.UseSocietyFund = false -- set to false to use player balance
 Config.PlayerBalance = "bank" -- or "bank" or "cash"
+Config.AllowNonOwnedVehicles = true      -- allow upgrades on any car (spawned/stolen)
+Config.UseOxInventoryMoney = true        -- use ox_inventory cash item for 'cash'
+
 
 -- Skill Bars
 Config.UseSkillbars = true -- set to false to use progress bars instead of skill bars for installations
@@ -61,12 +64,12 @@ Config.StanceMaxTrackWidth = 1.25
 Config.StanceNearbyVehiclesFreqMs = 500
 
 -- Repairs
-Config.AllowFixingAtOwnedMechanicsIfNoOneOnDuty = false
+Config.AllowFixingAtOwnedMechanicsIfNoOneOnDuty = true
 Config.DuctTapeMinimumEngineHealth = 100.0
 Config.DuctTapeEngineHealthIncrease = 150.0
 
 -- Tuning
-Config.TuningGiveInstalledItemBackOnRemoval = false
+Config.TuningGiveInstalledItemBackOnRemoval = true
 
 -- Locations
 Config.UseCarLiftPrompt = "[E] Use car lift"
@@ -94,8 +97,8 @@ Config.ManualHighRPMNotifications = true
 -- Misc
 Config.UniqueBlips = true
 Config.ModsPricesAsPercentageOfVehicleValue = true -- Enable pricing tuning items as % of vehicle value - it tries jg-dealerships, then QBShared, then the vehicles meta file automagically for pricing data
-Config.AdminsHaveEmployeePermissions = false -- admins can use tablet & interact with mechanics like an owner
-Config.MechanicEmployeesCanSelfServiceMods = false -- set to true to allow mechanic employees to bypass the "place order" system at their own mechanic
+Config.AdminsHaveEmployeePermissions = true -- admins can use tablet & interact with mechanics like an owner
+Config.MechanicEmployeesCanSelfServiceMods = true -- set to true to allow mechanic employees to bypass the "place order" system at their own mechanic
 Config.FullRepairAdminCommand = "vfix"
 Config.MechanicAdminCommand = "mechanicadmin"
 Config.ChangePlateDuringPreview = "PREVIEW"

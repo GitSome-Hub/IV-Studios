@@ -3,7 +3,6 @@ Config = {}
 -- list the resources that contain your weapon metas
 -- add all your weapon-pack resources here
 Config.MetaResources = {
-    -- example names; replace with your actual resource folder names
     'weaponspack',
   
       

@@ -410,4 +410,17 @@ QBShared.Items = {
     ['cokebaggy']                           = {['name'] = 'cokebaggy',                        ['label'] = 'cokebaggy',              ['weight'] = 100,          ['type'] = 'item',         ['image'] = 'cokebaggy.png',              ['unique'] = false,          ['useable'] = true,      ['shouldClose'] = true,      ['combinable'] = nil,   ['description'] = 'Coke baggy'},
     ['coke_small_brick']                    = {['name'] = 'coke_small_brick',                 ['label'] = 'coke_small_brick',       ['weight'] = 100,          ['type'] = 'item',         ['image'] = 'coke_small_brick.png',       ['unique'] = false,          ['useable'] = true,      ['shouldClose'] = true,      ['combinable'] = nil,   ['description'] = 'coke small brick'},
 
+['gov_tablet'] = {
+    ['name'] = 'gov_tablet',
+    ['label'] = 'Government Tablet',
+    ['weight'] = 800,
+    ['type'] = 'item',
+    ['image'] = 'tablet.png',
+    ['unique'] = true,
+    ['useable'] = true,
+    ['shouldClose'] = true,
+    ['combinable'] = nil,
+    ['description'] = 'Official government tablet for accessing administrative functions'
+},
+
 }

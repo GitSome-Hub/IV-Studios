@@ -50,7 +50,7 @@ Config = {
     -- ===============================
     --    Job Requirement
     -- ===============================
-    JobRequirement = true, -- Enable/Disable job requirement (if set to true, only players with certain jobs can use the menu)
+    JobRequirement = false, -- Enable/Disable job requirement (if set to true, only players with certain jobs can use the menu)
     AllowedJobs = {'police', 'mafia', 'yakuza', 'cartel'}, -- List of jobs allowed to access the gang actions menu (only these jobs can interact with the menu and actions)
 
     -- ===============================
